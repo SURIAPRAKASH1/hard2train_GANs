@@ -217,7 +217,7 @@ def compute_gradient_penalty(C: nn.Module,
 ##################### Initiating models ##########################
 
 G = Generator(args.latent_dim) 
-torch.complie(G) 
+torch.compile(G) 
 C = Critic()
 torch.compile(C) 
 
@@ -292,11 +292,6 @@ for epoch in range(args.epochs):
             loss_C.backward()
             opt_C.step()
 
-            # weight clipping for Critic to enforce 1-L continuty
-            with torch.no_grad():
-                for p in C.parameters():
-                    p.data.clamp(-args.c, args.c)
-
         # B.Train Generator
         G.requires_grad_(True)
         C.requires_grad_(False)
@@ -317,7 +312,7 @@ for epoch in range(args.epochs):
         loss_G.backward()
         opt_G.step()
 
-        if (epoch % 2 == 0 or epoch == args.epochs - 1) and ( batch % 200 == 0 or batch == dataloader.__len__()-1):
+        if (epoch % args.print_interval == 0 or epoch == args.epochs - 1) and ( batch % 200 == 0 or batch == dataloader.__len__()-1):
             print(f"{dataloader.__len__()}/{batch}, C Score: {loss_C} , G Score: {loss_G}")
 
 end = time.time()
