@@ -72,7 +72,7 @@ class Generator(nn.Module):
         )
 
         # report parameters
-        print(f"{self.__class__.__name__} Model parameters: {self._get_parameters_count()}")
+        print(f"{self.__class__.__name__} Model parameters: {(self._get_parameters_count()/1e+6):2f}M")
 
     def _get_parameters_count(self)-> int:
         """
@@ -149,7 +149,7 @@ class Discriminator(nn.Module):
             nn.Sigmoid()
         )
 
-        print(f"{self.__class__.__name__} Model parameters: {self._get_parameters_count()}")
+        print(f"{self.__class__.__name__} Model parameters: {(self._get_parameters_count()/1e+6):2f}M")
 
     def _get_parameters_count(self)-> int:
         """
@@ -187,7 +187,7 @@ criterion = nn.BCELoss().to(device)
 # Generator optimizer
 opt_G = optim.AdamW(G.parameters(), lr = args.lr, betas= (0.5, 0.5))
 # Discriminator optimier
-opt_D = optim.AdamW(D.parameters(), lr = args.lr, weight_decay = 1e-1, beta = (0.5, 0.5))
+opt_D = optim.AdamW(D.parameters(), lr = args.lr, weight_decay = 1e-1, betas = (0.5, 0.5))
 
 # Dataset
 if args.celebA:
