@@ -8,10 +8,16 @@ import os
 import time
 import importlib
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../.'))) 
-print(sys.path)
-from datasets.mnist import mnist_dataset
-pritn("mnist dataset", mnist_dataset)
+
 from common.argfile import get_args
+
+print("sys.path:", sys.path)
+
+import datasets
+print("datasets package found ✅")
+
+import datasets.mnist
+print("datasets.mnist module found ✅")
 
 # command line args
 args = get_args()
