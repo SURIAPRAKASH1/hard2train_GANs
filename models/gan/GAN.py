@@ -191,10 +191,10 @@ opt_D = optim.AdamW(D.parameters(), lr = args.lr, weight_decay = 1e-1, betas = (
 
 # Dataset
 if args.celebA:
-    from modles.datasets.celebA  import celebA_dataset
+    from datasets.celebA  import celebA_dataset
     dataset = celebA_dataset
 else:
-    from models.datasets.mnist import  mnist_dataset
+    from datasets.mnist import  mnist_dataset
     dataset = mnist_dataset
 
 # Dataloader
