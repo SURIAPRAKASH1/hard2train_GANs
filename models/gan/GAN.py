@@ -229,7 +229,7 @@ for epoch in range(args.epochs):
             loss_real = criterion(pred_real, real_labels)
 
             # Fake Images
-            noise = torch.rand(args.batch_size, args.latent_dim, device = device) * 2 - 1
+            noise = torch.rand((args.batch_size, args.latent_dim), device = device) * 2 - 1
             fake_labels = torch.zeros(args.batch_size, 1, device = device)
             fake_imgs = G(noise).detach()     # make sure we don't train G when traning D
             pred_fake = D(fake_imgs)
