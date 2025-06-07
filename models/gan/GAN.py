@@ -172,6 +172,7 @@ class Discriminator(nn.Module):
         out = self.final(self.l3(self.l2(self.l1(x))))
         return out
 
+print("Initiating Models")
 
 # initiating models
 G = Generator(args.latent_dim, image_shape).to(device)
@@ -194,7 +195,7 @@ if args.celebA:
     from datasets.celebA  import celebA_dataset
     dataset = celebA_dataset
 else:
-    from datasets.mnist import  mnist_dataset
+    from datasets.mnist import mnist_dataset
     dataset = mnist_dataset
 
 # Dataloader
@@ -203,7 +204,6 @@ dataloader = DataLoader(dataset,
                             pin_memory= True, 
                             shuffle= True,
                             drop_last= True)
-
 
 # Optimization Loop
 
