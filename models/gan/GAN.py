@@ -9,7 +9,6 @@ import time
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))) 
 
 from common.argfile import get_args
-from datasets.mnist import mnist_dataset
 
 # command line args
 args = get_args()
@@ -186,14 +185,17 @@ print("Models are compiled")
 criterion = nn.BCELoss().to(device)
 
 # Generator optimizer
-opt_G = optim.AdamW(G.parameters(), lr = args.lr)
+opt_G = optim.AdamW(G.parameters(), lr = args.lr, betas= (0.5, 0.5))
 # Discriminator optimier
-opt_D = optim.AdamW(D.parameters(), lr = args.lr, weight_decay = 1e-1)
+opt_D = optim.AdamW(D.parameters(), lr = args.lr, weight_decay = 1e-1, beta = (0.5, 0.5))
 
-# dataset
-dataset = mnist_dataset
-# if args.celebA:
-#     dataset = None
+# Dataset
+if args.celebA:
+    from datasets.celebA  import celebA_dataset
+    dataset = celebA_dataset
+else:
+    from datasets.celebA import  mnist_dataset
+    dataset = mnist_dataset
 
 # Dataloader
 dataloader = DataLoader(dataset, 
@@ -208,13 +210,13 @@ dataloader = DataLoader(dataset,
 start = time.time()
 for epoch in range(args.epochs):
 
-    if (epoch % 10 == 0 or epoch == args.epochs - 1):
+    if (epoch % args.print_interval == 0 or epoch == args.epochs - 1):
         print("Epoch", epoch + 1)
 
-    for batch, real_imgs in enumerate(dataloader, 0):
+    for batch, (real_imgs, _) in enumerate(dataloader, 0):
         real_imgs = real_imgs.to(device, non_blocking = True)
 
-        for _ in range(args.k):
+        for _ in range(1):
 
             # A.Train Discriminator
             G.requires_grad_(False)
@@ -227,7 +229,7 @@ for epoch in range(args.epochs):
             loss_real = criterion(pred_real, real_labels)
 
             # Fake Images
-            noise = torch.randn(args.batch_size, args.latent_dim, device = device)
+            noise = torch.rand(args.batch_size, args.latent_dim, device = device) * 2 - 1
             fake_labels = torch.zeros(args.batch_size, 1, device = device)
             fake_imgs = G(noise).detach()     # make sure we don't train G when traning D
             pred_fake = D(fake_imgs)
@@ -243,7 +245,7 @@ for epoch in range(args.epochs):
         D.requires_grad_(False)
         opt_G.zero_grad()
 
-        noise = torch.randn((args.batch_size, args.latent_dim), device = device)
+        noise = torch.rand((args.batch_size, args.latent_dim), device = device) * 2 - 1
         generated = G(noise)
         # fool the D to think it's reciving real images
         target_labels = torch.ones(args.batch_size, 1, device = device) - 0.1
@@ -254,7 +256,7 @@ for epoch in range(args.epochs):
         loss_G.backward()
         opt_G.step()
 
-        if (epoch % 10 == 0 or epoch == args.epochs - 1) and ( batch % 200 == 0 or batch == dataloader.__len__()-1):
+        if (epoch % args.print_interval == 0 or epoch == args.epochs - 1) and ( batch % 200 == 0 or batch == dataloader.__len__()-1):
             print(f"{dataloader.__len__()}/{batch}: D: loss_real {loss_real}, loss_fake {loss_fake} G: loss {loss_G}")
 
 end = time.time()
