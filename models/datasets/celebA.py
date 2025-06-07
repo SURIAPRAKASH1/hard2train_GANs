@@ -33,7 +33,6 @@ transform = v2.Compose([
     CustomNormalizer(),                      # custom normalizer do's some transformation   
 ])
 
-
 # Dataset
-celebA_root: str = "https://drive.google.com/drive/folders/0B7EVK8r0v71pWEZsZE9oNnFzTm8?resourcekey=0-5BR16BdXnb8hVj6CNHKzLg&usp=sharing"
-celebA_dataset: Type[Dataset] = torchvision.datasets.CelebA(celebA_root, download= True, transform= transform)
+def get_celebA_dataset(root: str)-> Dataset:
+    return torchvision.datasets.CelebA(root, download= True, transform= transform)
