@@ -7,7 +7,7 @@ import sys
 import os 
 import time
 import importlib
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))) 
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../..'))) 
 
 from common.argfile import get_args
 
@@ -194,11 +194,11 @@ opt_D = optim.AdamW(D.parameters(), lr = args.lr, weight_decay = 1e-1, betas = (
 
 # Dataset
 if args.celebA:
-    celebA = importlib.import_module("datasets.celebA")
-    dataset = celebA.celebA_dataset
+    from datasets.celebA import celebA_dataset
+    dataset = celebA_dataset
 else:
-    mnist = importlib.import_module("datasets.mnist")
-    dataset = mnist.mnist_dataset
+    from datasets.mnist import mnist_dataset
+    dataset = mnist_dataset
 
 # Dataloader
 dataloader = DataLoader(dataset, 
@@ -208,7 +208,7 @@ dataloader = DataLoader(dataset,
                             drop_last= True)
 
 # Optimization Loop
-
+print("Training Model .....")
 start = time.time()
 for epoch in range(args.epochs):
 
@@ -262,4 +262,4 @@ for epoch in range(args.epochs):
             print(f"{dataloader.__len__()}/{batch}: D: loss_real {loss_real}, loss_fake {loss_fake} G: loss {loss_G}")
 
 end = time.time()
-print("training time %.2f" % ((end - start)/60),"M")
+print("Training time %.2f" % ((end - start)/60),"M")
