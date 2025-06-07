@@ -8,6 +8,7 @@ import os
 import time
 import importlib
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../..'))) 
+print(sys.path)
 
 from common.argfile import get_args
 
