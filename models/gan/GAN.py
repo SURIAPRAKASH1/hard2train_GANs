@@ -11,16 +11,6 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../.'))
 
 from common.argfile import get_args
 
-import datasets
-
-print("datasets module:", datasets)
-print("datasets path:", datasets.__path__)
-
-# Let's list the content of the datasets package
-print("datasets/ contains:", os.listdir(datasets.__path__[0]))
-
-from datasets import mnist
-print(mnist)
 # command line args
 args = get_args()
 
