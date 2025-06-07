@@ -15,6 +15,7 @@ args = get_args()
 
 # current device
 device = "cuda" if torch.cuda.is_available() else "cpu"
+print("current device -->", device)
 
 
 ################################ Wassserstein Generative Adversarial Network ############################################
@@ -175,8 +176,10 @@ class Critic(nn.Module):
     
 
 ##################### Initiating models ##########################
+print("Initiating Models")
+
 G = Generator(args.latent_dim) 
-torch.complie(G) 
+torch.compile(G) 
 C = Critic()
 torch.compile(C) 
 
