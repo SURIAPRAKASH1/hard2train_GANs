@@ -9,6 +9,8 @@ import time
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))) 
 
 from common.argfile import get_args
+from datasets.mnist  import mnist_dataset
+dataset = mnist_dataset
 
 # command line args
 args = get_args()
@@ -192,13 +194,13 @@ opt_G = optim.AdamW(G.parameters(), lr = args.lr, betas= (0.5, 0.5))
 opt_D = optim.AdamW(D.parameters(), lr = args.lr, weight_decay = 1e-1, betas = (0.5, 0.5))
 
 # Dataset
-print(sys.path)
-if args.celebA:
-    from datasets.celebA  import celebA_dataset
-    dataset = celebA_dataset
-else:
-    from datasets.mnist import mnist_dataset
-    dataset = mnist_dataset
+# print(sys.path)
+# if args.celebA:
+#     from datasets.celebA  import celebA_dataset
+#     dataset = celebA_dataset
+# else:
+#     from datasets.mnist import mnist_dataset
+#     dataset = mnist_dataset
 
 # Dataloader
 dataloader = DataLoader(dataset, 
