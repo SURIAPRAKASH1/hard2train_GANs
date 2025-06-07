@@ -11,23 +11,8 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../.'))
 
 from common.argfile import get_args
 
-print("sys.path:", sys.path)
-
-import datasets
-print("datasets package found ✅")
-
-import datasets.mnist
-print("datasets.mnist module found ✅")
-
 # command line args
 args = get_args()
-
-
-print("CWD:", os.getcwd())
-print("Script location:", __file__)
-print("Files in script dir:", os.listdir(os.path.dirname(__file__)))
-print("Files in datasets/:", os.listdir(os.path.join(os.path.dirname(__file__), "datasets")))
-print("sys.path:", sys.path)
 
 # current device
 device = "cuda" if torch.cuda.is_available() else "cpu"
@@ -212,10 +197,9 @@ if args.celebA:
     from datasets.celebA import celebA_dataset
     dataset = celebA_dataset
 else:
-    # from datasets.mnist import mnist_dataset
-    mnist = importlib.import_module("datasets.mnist")
-    print("imported", mnist)
-    dataset = mnist.mnist_dataset
+    from datasets.mnist import get_mnist_dataset
+    mnist_root: str = "<http://yann.lecun.com/exdb/mnist/>"
+    dataset = get_mnist_dataset(mnist_root)
 
 # Dataloader
 dataloader = DataLoader(dataset, 
