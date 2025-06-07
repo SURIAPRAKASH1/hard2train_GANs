@@ -290,7 +290,7 @@ dataloader = DataLoader(dataset,
 
 start = time.time()
 for epoch in range(args.epochs):
-    if (epoch % args.print_intervel == 0 or epoch == args.epochs - 1):
+    if (epoch % args.print_interval == 0 or epoch == args.epochs - 1):
         print("Epoch", epoch + 1)
 
     for current_batch, real_videos in enumerate(dataloader, 0): # videos with shape (B, T, C, H, W)
@@ -346,7 +346,7 @@ for epoch in range(args.epochs):
                 elif isinstance(module, nn.BatchNorm3d):
                     module.weight.data = batchnorm_gamma_clip(module)
 
-        if (epoch % args.print_intervel == 0 or epoch == args.epochs - 1) and ( current_batch % 50 == 0 or current_batch == dataloader.__len__()-1):
+        if (epoch % args.print_interval == 0 or epoch == args.epochs - 1) and ( current_batch % 50 == 0 or current_batch == dataloader.__len__()-1):
             print(f"{dataloader.__len__()}/{current_batch}, VC Score: {loss_VC} , VG Score: {loss_VG}")
 
 end = time.time()
