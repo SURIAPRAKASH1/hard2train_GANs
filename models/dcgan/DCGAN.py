@@ -15,6 +15,7 @@ args = get_args()
 
 # current device
 device = "cuda" if torch.cuda.is_available() else "cpu"
+print("current device", device)
 
 ######################### Deep Convolutional Generative Adversarial Network - DCGAN #####################################
 
@@ -175,8 +176,10 @@ class Discriminator(nn.Module):
         return out
 
 ##################### Initiating models ##########################
+print("Models Initiating ...")
+
 G = Generator(args.latent_dim) 
-torch.complie(G) 
+torch.compile(G) 
 D = Discriminator() 
 torch.compile(D) 
 
@@ -215,7 +218,7 @@ dataloader = DataLoader(dataset,
 
 
 ###################### Optimization Loop ##########################
-
+print("Training Model ........")
 start = time.time()
 for epoch in range(args.epochs):
     if (epoch % args.print_interval == 0 or epoch == args.epochs - 1):
