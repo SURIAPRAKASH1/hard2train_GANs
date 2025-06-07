@@ -248,7 +248,7 @@ class VideoCritic(nn.Module):
 
         h = self.model3d(x)
         # turn a tensor of R^NxCxTxHxW into R^NxCxHxW
-        h = torch.reshape(h, (32, 512, 4, 4))        # (B, C, H, W)
+        h = torch.reshape(h, (args.batch_size, 512, 4, 4))        # (B, C, H, W)
         h = self.conv2d(h).view(-1)                  # (B, 1, 1, 1) -> (B)
         return h
 
