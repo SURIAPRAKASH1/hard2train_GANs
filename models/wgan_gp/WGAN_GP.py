@@ -15,6 +15,7 @@ args = get_args()
 
 # current device
 device = "cuda" if torch.cuda.is_available() else "cpu"
+print("current device -->", device)
 
 ######################### Wassserstein Generative Adversarial Network with Gradinet Penalty ##########################
 
@@ -247,7 +248,8 @@ dataloader = DataLoader(dataset,
                             batch_size = args.batch_size, 
                             pin_memory= True, 
                             shuffle= True,
-                            drop_last= True)
+                            drop_last= True,
+                            num_workers = os.cpu_count() - 1)
 
 
 ###################### Optimization Loop ##########################
