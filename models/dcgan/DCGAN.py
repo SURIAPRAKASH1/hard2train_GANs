@@ -189,7 +189,7 @@ print("Models are compiled !")
 ##################### Initiating Loss and optimizer ###############
 
 # Binary Cross Entropy Loss
-criterion = nn.BCELoss().to(device)
+criterion = nn.BCEWithLogitsLoss().to(device)
 
 # Generator optimizer
 opt_G = optim.AdamW(G.parameters(), lr = args.lr, betas= (0.5, 0.5))
@@ -252,7 +252,7 @@ for epoch in range(args.epochs):
                 loss_fake = criterion(pred_fake, fake_labels)
 
             # back-prop and update D parameters
-            loss_D = (loss_real + loss_fake) #* 0.5
+            loss_D = (loss_real + loss_fake) * 0.5
             loss_D.backward()
             opt_D.step()
 
