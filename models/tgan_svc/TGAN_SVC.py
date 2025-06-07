@@ -15,6 +15,7 @@ args = get_args()
 
 # current device
 device = "cuda" if torch.cuda.is_available() else "cpu"
+print("current device", device)
 
 ################ Temporal Generative Adversarial Network with Singular Value Clipping - (TGAN-SVC) ######################
 
@@ -253,6 +254,7 @@ class VideoCritic(nn.Module):
 
 
 ##################### Initiating models ##########################
+print("Initiating Models ......")
 
 VG = VideoGenerator().to(device)
 torch.compile(VG)
@@ -280,7 +282,8 @@ dataloader = DataLoader(dataset,
                             batch_size = args.batch_size, 
                             pin_memory= True, 
                             shuffle= True,
-                            drop_last= True)
+                            drop_last= True,
+                            num_workers = os.cpu_count() - 1)
 
 
 ###################### Optimization Loop ##########################
