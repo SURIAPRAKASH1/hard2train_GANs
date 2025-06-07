@@ -194,11 +194,11 @@ opt_D = optim.AdamW(D.parameters(), lr = args.lr, weight_decay = 1e-1, betas = (
 
 # Dataset
 if args.celebA:
-    from datasets.celebA import get_celebA_dataset
+    from gan_datasets.celebA import get_celebA_dataset
     celebA_root: str = "https://drive.google.com/drive/folders/0B7EVK8r0v71pWEZsZE9oNnFzTm8?resourcekey=0-5BR16BdXnb8hVj6CNHKzLg&usp=sharing"
     dataset = get_celebA_dataset(celebA_root)
 else:
-    from datasets.mnist import get_mnist_dataset
+    from gan_datasets.mnist import get_mnist_dataset
     mnist_root: str = "<http://yann.lecun.com/exdb/mnist/>"
     dataset = get_mnist_dataset(mnist_root)
 

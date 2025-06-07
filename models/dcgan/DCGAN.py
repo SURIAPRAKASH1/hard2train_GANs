@@ -6,7 +6,7 @@ from torch.utils.data import DataLoader
 import sys 
 import os 
 import time
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))) 
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../.'))) 
 
 from common.argfile import get_args
 
@@ -198,11 +198,13 @@ opt_D = optim.AdamW(D.parameters(), lr = args.lr, weight_decay = 1e-1, betas= (0
 
 # Dataset
 if args.celebA:
-    from datasets.celebA  import celebA_dataset
-    dataset = celebA_dataset
+    from gan_datasets.celebA import get_celebA_dataset
+    celebA_root: str = "https://drive.google.com/drive/folders/0B7EVK8r0v71pWEZsZE9oNnFzTm8?resourcekey=0-5BR16BdXnb8hVj6CNHKzLg&usp=sharing"
+    dataset = get_celebA_dataset(celebA_root)
 else:
-    from datasets.celebA import  mnist_dataset
-    dataset = mnist_dataset
+    from gan_datasets.mnist import get_mnist_dataset
+    mnist_root: str = "<http://yann.lecun.com/exdb/mnist/>"
+    dataset = get_mnist_dataset(mnist_root)
 
 # Dataloader
 dataloader = DataLoader(dataset, 

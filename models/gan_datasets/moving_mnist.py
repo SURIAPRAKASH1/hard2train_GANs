@@ -31,5 +31,5 @@ transform = v2.Compose([
 ])
 
 # Dataset
-mminst_root: str =  "http://www.cs.toronto.edu/~nitish/unsupervised_video/mnist_test_seq.npy"
-mminst_dataset: Type[Dataset] = torchvision.datasets.MovingMNIST(mminst_root, download= True, transform= transform)
+def get_mmnist_dataset(root: str) -> Dataset:
+    return torchvision.datasets.MovingMNIST(root, download= True, transform= transform)

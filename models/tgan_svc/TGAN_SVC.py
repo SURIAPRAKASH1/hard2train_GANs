@@ -6,7 +6,7 @@ from torch.utils.data import DataLoader
 import sys 
 import os 
 import time
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))) 
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../.'))) 
 
 from common.argfile import get_args
 
@@ -272,9 +272,11 @@ ropt_VC = optim.RMSprop(VC.parameters(), lr = args.lr)
 
 ####################### Datset and DataLoader #######################
 
-from datasets.moving_mnist import mmnist_dataset
+from gan_datasets.moving_mnist import get_mmnist_dataset
+mmnist_root: str =  "http://www.cs.toronto.edu/~nitish/unsupervised_video/mnist_test_seq.npy"
+dataset = get_mmnist_dataset(mmnist_root)
 # Dataloader
-dataloader = DataLoader(mmnist_dataset, 
+dataloader = DataLoader(dataset, 
                             batch_size = args.batch_size, 
                             pin_memory= True, 
                             shuffle= True,
