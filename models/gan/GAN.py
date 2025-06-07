@@ -14,6 +14,7 @@ from common.argfile import get_args
 
 # command line args
 args = get_args()
+print(args)
 
 # current device
 device = "cuda" if torch.cuda.is_available() else "cpu"
@@ -198,8 +199,10 @@ if args.celebA:
     from datasets.celebA import celebA_dataset
     dataset = celebA_dataset
 else:
-    from datasets.mnist import mnist_dataset
-    dataset = mnist_dataset
+    # from datasets.mnist import mnist_dataset
+    mnist = importlib.import_module("datasets.mnist")
+    print("imported", mnist)
+    dataset = mnist.mnist_dataset
 
 # Dataloader
 dataloader = DataLoader(dataset, 
