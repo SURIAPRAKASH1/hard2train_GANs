@@ -35,5 +35,5 @@ transform = v2.Compose([
 
 
 # Dataset
-mnist_root: str = "<http://yann.lecun.com/exdb/mnist/>"
-mnist_dataset: Type[Dataset]  = torchvision.datasets.MNIST(mnist_root, download= True, transform= transform)
+def get_mnist_dataset(root: str = "./data") -> Dataset:
+    return torchvision.datasets.MNIST(root=root, download=True, transform=transform)
