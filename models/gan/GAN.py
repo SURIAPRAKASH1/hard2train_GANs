@@ -14,7 +14,13 @@ from common.argfile import get_args
 
 # command line args
 args = get_args()
-print(args)
+
+
+print("CWD:", os.getcwd())
+print("Script location:", __file__)
+print("Files in script dir:", os.listdir(os.path.dirname(__file__)))
+print("Files in datasets/:", os.listdir(os.path.join(os.path.dirname(__file__), "datasets")))
+print("sys.path:", sys.path)
 
 # current device
 device = "cuda" if torch.cuda.is_available() else "cpu"
