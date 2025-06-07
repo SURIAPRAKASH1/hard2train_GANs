@@ -9,8 +9,8 @@ import time
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))) 
 
 from common.argfile import get_args
-from datasets.mnist import mnist_dataset
-dataset = mnist_dataset
+import datasets.mnist
+# dataset = mnist_dataset
 
 # command line args
 args = get_args()
