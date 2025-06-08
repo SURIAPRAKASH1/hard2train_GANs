@@ -261,7 +261,7 @@ for epoch in range(args.epochs):
         opt_G.step()
 
         # saving checkpoints after some steps of batch training
-        if batch + 1 % args.ckp_interval == 0:
+        if batch % args.ckp_interval == 0 or batch  == len(dataloader) - 1:
             torch.save(G.state_dict(), "checkpoints/gan_Gckp.pt")
             torch.save(D.state_dict(), "checkpoints/gan_Dckp.pt")
             print("checkpoints are saved ...!")
