@@ -18,5 +18,6 @@ def get_args():
     parser.add_argument("--n_critic", type= int, default= 5, help= "steps for training critic model")
     parser.add_argument("--c", type= int, default= 0.01, help= "weight cliping range for wgan")
     parser.add_argument("--lamda", type= int, default= 10, help= "co-efficient term in gradient penaly for wgan-gp")
+    parser.add_argument("--checkpoint_interval", type = int, default= 200, help= "Saving models checkpoint for given interval")
 
     return parser.parse_args()

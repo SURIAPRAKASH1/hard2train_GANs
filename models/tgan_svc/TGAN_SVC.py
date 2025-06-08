@@ -6,7 +6,7 @@ from torch.utils.data import DataLoader
 import sys 
 import os 
 import time
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../.'))) 
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../..'))) 
 
 from common.argfile import get_args
 
@@ -345,6 +345,12 @@ for epoch in range(args.epochs):
                     module.weight.data = singular_value_clip(module.weight)
                 elif isinstance(module, nn.BatchNorm3d):
                     module.weight.data = batchnorm_gamma_clip(module)
+
+
+        if current_batch + 1 % args.ckp_interval == 0:
+            torch.save(VG.state_dict(), "checkpoints/tgan_VGckp.pt")
+            torch.save(VC.state_dict(), "checkpoints/tgan_VCckp.pt")
+            print("checkpoints are saved ...!")
 
         if (epoch % args.print_interval == 0 or epoch == args.epochs - 1) and ( current_batch % 50 == 0 or current_batch == dataloader.__len__()-1):
             print(f"{dataloader.__len__()}/{current_batch}, VC Score: {loss_VC} , VG Score: {loss_VG}")

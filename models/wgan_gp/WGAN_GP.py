@@ -6,7 +6,7 @@ from torch.utils.data import DataLoader
 import sys 
 import os 
 import time
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../.'))) 
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../..'))) 
 
 from common.argfile import get_args
 
@@ -311,6 +311,11 @@ for epoch in range(args.epochs):
         # back-prop and update G parameters
         loss_G.backward()
         opt_G.step()
+
+        if batch + 1 % args.ckp_interval == 0:
+            torch.save(G.state_dict(), "checkpoints/wgangp_Gckp.pt")
+            torch.save(C.state_dict(), "checkpoints/wgangp_Dckp.pt")
+            print("checkpoints are saved ...!")
 
         if (epoch % args.print_interval == 0 or epoch == args.epochs - 1) and ( batch % 200 == 0 or batch == dataloader.__len__()-1):
             print(f"{dataloader.__len__()}/{batch}, C Score: {loss_C} , G Score: {loss_G}")
