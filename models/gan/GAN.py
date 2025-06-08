@@ -202,6 +202,7 @@ else:
     dataset = get_mnist_dataset(mnist_root)
 
 # Dataloader
+os.makedirs("checkpoints", exist_ok = True)
 dataloader = DataLoader(dataset, 
                             batch_size = args.batch_size, 
                             pin_memory= True, 
