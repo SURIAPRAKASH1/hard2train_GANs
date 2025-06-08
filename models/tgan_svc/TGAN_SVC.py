@@ -278,6 +278,7 @@ from gan_datasets.moving_mnist import get_mmnist_dataset
 mmnist_root: str =  "http://www.cs.toronto.edu/~nitish/unsupervised_video/mnist_test_seq.npy"
 dataset = get_mmnist_dataset(mmnist_root)
 # Dataloader
+os.makedirs("checkpoints", exist_ok = True)
 dataloader = DataLoader(dataset, 
                             batch_size = args.batch_size, 
                             pin_memory= True, 
@@ -347,7 +348,7 @@ for epoch in range(args.epochs):
                     module.weight.data = batchnorm_gamma_clip(module)
 
 
-        if current_batch + 1 % args.ckp_interval == 0:
+        if current_batch % args.ckp_interval == 0:
             torch.save(VG.state_dict(), "checkpoints/tgan_VGckp.pt")
             torch.save(VC.state_dict(), "checkpoints/tgan_VCckp.pt")
             print("checkpoints are saved ...!")

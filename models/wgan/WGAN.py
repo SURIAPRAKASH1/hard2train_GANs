@@ -205,6 +205,7 @@ else:
     mnist_root: str = "<http://yann.lecun.com/exdb/mnist/>"
     dataset = get_mnist_dataset(mnist_root)
 
+os.makedirs("checkpoints", exist_ok = True)
 # Dataloader
 dataloader = DataLoader(dataset, 
                             batch_size = args.batch_size, 
@@ -275,7 +276,7 @@ for epoch in range(args.epochs):
         loss_G.backward()
         opt_G.step()
 
-        if batch + 1 % args.ckp_interval == 0:
+        if batch % args.ckp_interval == 0:
             torch.save(G.state_dict(), "checkpoints/wgan_Gckp.pt")
             torch.save(C.state_dict(), "checkpoints/wgan_Cckp.pt")
             print("checkpoints are saved ...!")
