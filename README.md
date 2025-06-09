@@ -22,7 +22,7 @@
    #### [WGAN_GP](models/wgan_gp/WGAN_GP.py)
         python WGAN_GP.py --lr=0.0001 --n_critic=5 --lamda=10 --latent_dim=100
    #### [TGAN_SVC](models/tgan_svc/TGAN_SVC.py)
-        python TAGAN_SVC.py --lr=0.00005 --n_critic=5 --latent_dim=100
+        python TGAN_SVC.py --lr=0.00005 --n_critic=5 --latent_dim=100
 
   *Above CLI arguments are specific to each variant but some other CLI arguments like*
 
