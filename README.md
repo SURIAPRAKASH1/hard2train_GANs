@@ -36,7 +36,7 @@
 
 # *Sampling From GAN's*
 <div style="display: flex; justify-content: space-between; text-align: center;">
- <h3>original ---->nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspGAN ----->&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp DcGAN ---->nbsp&nbspWGAN(on celebA dataset) </h3>
+ <h3>original ------>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspGAN ------->&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp DcGAN ---->&nbsp&nbspWGAN(on celebA dataset) </h3>
   <img width=190 src = "assets/mnist_original.png"/>
   <img width=190 src = "assets/gan.png"/>
   <img width=190 src = "assets/wgan.png"/>
