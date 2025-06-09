@@ -43,6 +43,4 @@
   <img width=230 src = "assets/dcgan3d.png"/>
 </div>
 
-![Image](assets/gan.png)
-
 
