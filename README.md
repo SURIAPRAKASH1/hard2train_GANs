@@ -4,3 +4,11 @@
   * *GAN's has two models* **Generator** *and* **Discriminator.** 
   * *Generator try to generate images that are very close to real and Discriminator (act as classifier) try to distinguish from Real/Fake images distribution.*
   * *GAN's are learned by playing **minmax game**.Where Generator try to minimize the difference b/w real and fake at the same time Discriminator try to maximize the difference b/w real and fake.*
+    
+# *Training*
+   *As a Default we can train gan's either Mnist or CelebA dataset. By giving **-cA** flag CelebA will be training dataset else Mnist.*
+   ### [GAN]()
+ 
+
+# *Dependencies*
+    pip install torch torchvision moviepy IPython
