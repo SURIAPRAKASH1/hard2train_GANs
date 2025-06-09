@@ -31,6 +31,18 @@
   *These Arguments are common to all gan so you can fun with that if you wanna.*
 
        
-
 # *Dependencies*
     pip install torch torchvision moviepy IPython
+
+# *Sampling From GAN's*
+<div style="display: flex; justify-content: space-between; text-align: center;">
+ <h3>original ----------------> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspGAN ----------->&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp DcGAN ----------->&nbsp&nbsp&nbsp&nbsp&nbspWGAN(on celebA dataset) </h3>
+  <img width=230 src = "assets/mnist_original.png"/>
+  <img width=230 src = "assets/gan.png"/>
+  <img width=230 src = "assets/wgan.png"/>
+  <img width=230 src = "assets/dcgan3d.png"/>
+</div>
+
+![Image](assets/gan.png)
+
+
