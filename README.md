@@ -6,9 +6,31 @@
   * *GAN's are learned by playing **minmax game**.Where Generator try to minimize the difference b/w real and fake at the same time Discriminator try to maximize the difference b/w real and fake.*
     
 # *Training*
-   *As a Default we can train gan's either Mnist or CelebA dataset. By giving **-cA** flag CelebA will be training dataset else Mnist.*
-   ### [GAN]()
- 
+   * *As a Default we can train gan's either Mnist or CelebA dataset*.
+   * *By giving **-cA** flag CelebA will be training dataset else Mnist*.
+   * *Using **-h** flag you will get info about other arguments that are available*.
+   * ***--ckp_interval** argument controls How often we wanna save checkpoints (trained weights) of models. As default checkpoint will be saved after every 200 steps of training.Training checkpoints will be stored in [models/checkpoints](models/checkpoints) dir (this dir will be created/appear only when training or after training).*
+   * *If you don't like training or even look at models in script format like me use [NOTEBOOKS](notebooks).*
+   * *[Colab Notebook](notebooks/colab_gans) contains all the implementation of gan&training from scartch.*
+   * *[Kaggle Notebook](notebooks/kaggle_gans) contains implementation of only few gan variants but it's uses DDP for training sorta good to know.*
+   #### [GAN](models/gan/GAN.py)   
+        python GAN.py --lr=0.0002 --latent_dim=100   
+   #### [DCGAN](models/dcgan/DCGAN.py)
+        python DCGAN.py --lr=0.0002 --k=1 --latent_dim=100
+   #### [WGAN](models/wgan/WGAN.py)
+        python WGAN.py --lr=0.00005 --n_critic=5 -c=0.01 --latent_dim=100
+   #### [WGAN_GP](models/wgan_gp/WGAN_GP.py)
+        python WGAN_GP.py --lr=0.0001 --n_critic=5 --lamda=10 --latent_dim=100
+   #### [TGAN_SVC](models/tgan_svc/TAGAN_SVC_GP.py)
+        python TAGAN_SVC.py --lr=0.00005 --n_critic=5 --latent_dim=100
+
+  *Above CLI arguments are specific to each variant but some other CLI arguments like*
+
+      --batch_size --epochs --print_interval --ckp_interval
+
+  *These Arguments are common to all gan so you can fun with that if you wanna*
+
+       
 
 # *Dependencies*
     pip install torch torchvision moviepy IPython
