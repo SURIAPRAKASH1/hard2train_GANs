@@ -26,9 +26,9 @@
 
   *Above CLI arguments are specific to each variant but some other CLI arguments like*
 
-      --batch_size --epochs --print_interval --ckp_interval
+      --batch_size --epochs --print_interval --ckp_interval etc..
 
-  *These Arguments are common to all gan so you can fun with that if you wanna*
+  *These Arguments are common to all gan so you can fun with that if you wanna.*
 
        
 
