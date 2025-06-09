@@ -11,8 +11,8 @@
    * *Using **-h** flag you will get info about other arguments that are available*.
    * ***--ckp_interval** argument controls How often we wanna save checkpoints (trained weights) of models. As default checkpoint will be saved after every 200 steps of training.Training checkpoints will be stored in [models/checkpoints](models/checkpoints) dir (this dir will be created/appear only when training or after training).*
    * *If you don't like training or even look at models in script format like me use [NOTEBOOKS](notebooks).*
-   * *[Colab Notebook](notebooks/colab_gans) contains all the implementation of gan&training from scartch.*
-   * *[Kaggle Notebook](notebooks/kaggle_gans) contains implementation of only few gan variants but it's uses DDP for training sorta good to know.*
+   * *[Colab Notebook](notebooks/colab_gans.ipynb) contains all the implementation of gan&training from scartch.*
+   * *[Kaggle Notebook](notebooks/kaggle_gans.ipynb) contains implementation of only 1or2 gan variants but it's uses DDP for training sorta good to know.*
    #### [GAN](models/gan/GAN.py)   
         python GAN.py --lr=0.0002 --latent_dim=100   
    #### [DCGAN](models/dcgan/DCGAN.py)
